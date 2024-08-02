@@ -1,0 +1,32 @@
+version: 2
+
+sources:
+  - name: raw_adventure_works
+    description: 'descrco'
+    database: fea24_6
+    schema: raw_adventure_works
+    tables:
+      - name: creditcard
+        description: 'Tabela com dados tipos de cartão.'
+      - name: store
+        description: 'Tabela com dados das lojas.'
+      - name: product
+        description: 'Tabela com dados dos produtos.'
+      - name: productsubcategory
+        description: 'Tabela com dados das subcategorias dos produtos.'
+      - name: productcategory
+        description: 'Tabela com dados das categorias dos produtos.'
+      - name: person
+        description: 'Tabela com dados dos vendedores.'
+      - name: customer
+        description: 'Tabela com dados dos clientes.'
+      - name: salesperson
+        description: 'Tabela com dados das vendas dos vendedores.'
+      - name: salesreason
+        description: 'Tabela com dados dos motivos da venda.'
+      - name: address
+        description: 'Tabela com dados dos endereços.'
+      - name: stateprovince
+        description: 'Tabela com dados dos estados.'
+      - name: countryregion
+        description: 'Tabela com dados dos paises.'
