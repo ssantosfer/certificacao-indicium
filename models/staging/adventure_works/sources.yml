@@ -132,6 +132,8 @@ sources:
             description: ID do estado. Usada para relacionar com a tabela de states_province
           - name: addressline1
             description: Nome do endereço.
+          - name: postalcode
+            description: CEP do endereço.
           - name: city
             description: Nome da cidade.
 
