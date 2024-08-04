@@ -2,31 +2,231 @@ version: 2
 
 sources:
   - name: raw_adventure_works
-    description: 'descrco'
+    description: 'Conjunto de dados da adventure works aqui possui informações de recursos humanos, vendas, compras etc'
     database: fea24_6
     schema: raw_adventure_works
     tables:
       - name: creditcard
         description: 'Tabela com dados tipos de cartão.'
+        columns:
+          - name: creditcardid
+            description: Chave primária da tabela creditcard. Cada linha representa um cartão de crédito.
+            tests:
+                - unique
+                - not_null
+          - name: cardtype
+            description: tipo de cartão de crédito.
+
       - name: store
         description: 'Tabela com dados das lojas.'
+        columns:
+          - name: businessentityid
+            description: Chave primária da tabela. Cada linha representa uma unidade de negócio (loja).
+            tests:
+              - unique
+              - not_null
+          - name: salespersonid
+            description: ID do vendedor. Chave secundária da tabela, usada para relacionar com a tabela de sales_person.
+          - name: name
+            description: Nome da loja.
       - name: product
         description: 'Tabela com dados dos produtos.'
+        columns:
+          - name: productid
+            description: Chave primária da tabela. Cada linha representa um produto.
+            tests:
+              - unique
+              - not_null
+          - name: name
+            description: Nome do produto.
+          - name: productnumber
+            description: Número do produto.
+          - name: productsubcategoryid
+            description: ID da sub categoria do produto. Usada para relacionar com a tabela de sub_category.
+                  
       - name: productsubcategory
         description: 'Tabela com dados das subcategorias dos produtos.'
+        columns:
+          - name: productsubcategoryid
+            description: Chave Primária da tabela. Cada linha represente um sub categoria.
+            tests:
+              - unique
+              - not_null
+          - name: name
+            description: Nome da Sub Categoria.
+          - name: productcategoryid
+            description: ID da categoria do produto. Usada para relacionar com a tabela de Category.
+                  
       - name: productcategory
         description: 'Tabela com dados das categorias dos produtos.'
+        columns:
+          - name: productcategoryid
+            description: Chave primária da tabela. Cada linha representa um categoria de produto.
+            tests:
+              - unique
+              - not_null
+          - name: name
+            description: Nome da categoria.
+                  
       - name: person
-        description: 'Tabela com dados dos vendedores.'
+        description: 'Tabela com dados das pessoas.'
+        columns:
+          - name: businessentityid
+            description: Chave primária da tabela. Cada linha reprensenta uma entidade de negócio (pessoa).
+            tests:
+              - unique
+              - not_null
+          - name: nome_completo
+            description: Nome completo. Junção dos campos firstname e lastname
+          - name: persontype
+            description: Tipo de pessoa. 
+            
       - name: customer
         description: 'Tabela com dados dos clientes.'
+        columns:
+          - name: customerid
+            description: Chave primária da tabela. Cada linha representa um cliente.
+            tests:
+              - unique
+              - not_null
+          - name: personid
+            description: ID da pessoa.
+          - name: storeid
+            description: ID da loja.
+          - name: territoryid
+            description: ID do território.
+
       - name: salesperson
-        description: 'Tabela com dados das vendas dos vendedores.'
+        description: 'Tabela com dados dos vendedores.'
+        columns:
+          - name: businessentityid
+            description: Chave primária da tabela. Cada linha representa uma entidade de negócio (Vendedor)
+            tests:
+              - unique
+              - not_null
+          - name: territoryid
+            description: ID do territorio do vendedor.
+
       - name: salesreason
         description: 'Tabela com dados dos motivos da venda.'
+        columns:
+          - name: salesreasonid
+            description: Chave primária da tabela. Cada linha representa um motivo de venda.
+            tests:
+              - unique
+              - not_null
+          - name: name
+            description: Nome do motivo da venda.
+          - name: reasontype
+            description: Tipo do motivo da venda.
+
       - name: address
         description: 'Tabela com dados dos endereços.'
+        columns:
+          - name: addressid
+            description: Chave primária da tabela. Cada linha representa um endereço.
+            tests:
+              - unique
+              - not_null
+          - name: stateprovinceid
+            description: ID do estado. Usada para relacionar com a tabela de states_province
+          - name: addressline1
+            description: Nome do endereço.
+          - name: city
+            description: Nome da cidade.
+
       - name: stateprovince
         description: 'Tabela com dados dos estados.'
+        columns:
+          - name: stateprovinceid
+            description: Chave Primária da tabela. Cada linha representa um estado.
+            tests:
+              - unique
+              - not_null
+          - name: territoryid
+            description: ID do territorio.
+          - name: countryregioncode
+            description: Código do País
+          - name: name
+            description: Nome do estado.
+          - name: stateprovincecode
+            description: Código do estado.
+
       - name: countryregion
         description: 'Tabela com dados dos paises.'
+        columns:
+          - name: countryregioncode
+            description: Chave primária da tabela. Cada linha representa um país.
+            tests:
+              - unique
+              - not_null
+          - name: name
+            description: Nome do país.
+
+      - name: salesorderheader
+        description: 'Tabela com dados de vendas.'
+        columns:
+          - name: salesorderid
+            description: Chave primária da tabela. Cada linha representa um venda.
+            tests:
+              - unique
+              - not_null
+          - name: salespersonid
+            description: ID do vendedor. Usada para relacionar com a tabela de sales_person.
+          - name: creditcardid
+            description: ID do cartão de crédito. Usada para relacionar com a tabela de creditcards.
+          - name: customerid
+            description: ID do cliente. Usada para relacionar com a tabela de customers.
+          - name: territoryid
+            description: ID do territorio.
+          - name: shiptoaddressid
+            description: ID do endereço. Usada para relacionar com a tabela de addresses.
+          - name: orderdate
+            description: Data da Venda.
+          - name: status
+            description: Status da Venda.
+          - name: subtotal
+            description: Subtotal da Venda.
+          - name: freight
+            description: Valor do frete da Venda.
+          - name: taxamt
+            description: Valor do imposto da Venda.
+          - name: totaldue
+            description: Valor total da Venda.
+
+      - name: salesorderdetail
+        description: 'Tabela com dados de detalhamento das vendas.'
+        columns:
+          - name: salesorderdetailid
+            description: Chave primária da tabela. Cada linha representa um detalhamento de uma venda.
+            tests:
+              - unique
+              - not_null
+          - name: salesorderid
+            description: ID da venda. Usada para relacionar com a tabela de orders_headers.
+          - name: productid
+            description: ID do produto. Usada para relacionar com a tabela de products.
+          - name: orderqty
+            description: Quantidade de produto.
+          - name: unitprice
+            description: Preço unitário do produto.
+          - name: unitpricediscount
+            description: Desconto aplicado ao preço unitário do produto.
+
+      - name: salesorderheadersalesreason 
+        description: 'Tabela com dados de vendas e motivos vendas.'
+        columns:
+          - name: salesorderid
+            description: Chave primária da tabela. Cada linha representa um número de Venda.
+          - name: salesreasonid
+            description: ID do motivo da Venda.
+
+      - name: businessentity 
+        description: 'Tabela com dados das entidades de negócio.'
+        columns:
+          - name: businessentityid
+            description: Chave primária da tabela. Cada linha representa um número de entidade de negócio.
+            tests:
+              - unique
+              - not_null
+                  
