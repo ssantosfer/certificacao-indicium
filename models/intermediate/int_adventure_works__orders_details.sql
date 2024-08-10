@@ -25,13 +25,6 @@ with
             , desconto_preco_unitario
         from {{ ref('stg_adventure_works__sales_orders_details') }}
     )
-    , item_quantity_per_order as (
-        select
-            fk_venda
-            , sum(quantidade_vendida) as total_itens
-        from order_detail
-        group by fk_venda
-    )
     , joined as (
         select
             order_detail.pk_venda_detalhada
@@ -91,4 +84,3 @@ select
     , lucro
     , valor_total
 from metrics
-where pk_venda = 74555

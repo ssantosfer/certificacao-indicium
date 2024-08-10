@@ -21,7 +21,7 @@ with
     , store as (
         select
             pk_entidade_negocio
-            , fk_sales_person
+            , fk_vendedor
             , nome_loja
         from {{ ref('stg_adventure_works__stores') }}
     )
@@ -30,9 +30,9 @@ with
             customer.pk_cliente
             , customer.fk_pessoa
             , 0 as fk_loja
+            , 0 as fk_vendedor
           --  , customer.fk_loja
             , person.nome_completo as nm_cliente
-            , 0 as fk_vendedor
             , 'Pessoa Física' as tipo_cliente
         from customer
         inner join person on customer.fk_pessoa = person.pk_entidade_negocio
@@ -43,8 +43,8 @@ with
             customer.pk_cliente
             , customer.fk_pessoa
             , customer.fk_loja
+            , store.fk_vendedor
             , store.nome_loja as nm_cliente
-            , store.fk_sales_person as fk_vendedor
             , 'Pessoa Juridica' as tipo_cliente
         from customer
         inner join store on customer.fk_loja = store.pk_entidade_negocio
