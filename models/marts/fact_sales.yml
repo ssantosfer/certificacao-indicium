@@ -1,0 +1,44 @@
+version: 2
+
+models:
+  - name: fact_sales
+    description: Tabela dimensão dos motivos de venda da Adventure Works.
+    columns:
+      - name: pk_venda_detalhada
+        description: Chave primaria da tabela. Usada para intendificar o detalhamento do pedido.
+          - unique
+          - not_null
+      - name: pk_venda
+        description: Chave estrangeria da tabela de orders. 
+      - name: fk_produto
+        description: Chave estrangeira que relaciona com a tabela de Products.
+      - name: fk_vendedor
+        description: Chave estrangeira que identifica o vendedor. 
+      - name: fk_cliente
+        description: Chave estrangeira que relaciona com a tabela de Customers.
+      - name: fk_cartao_credito
+        description: Chave estrangeria que relaciona com a tabela de Creditcards.
+      - name: fk_endereco
+        description: Chave estrangeira que relaciona com a tabela de Adrdresses.
+      - name: data_venda
+        description: Data da Venda.
+      - name: status
+        description: Status da Venda.
+      - name: quantidade_vendida
+        description: Quantidade de itens vendidos no pedido.
+      - name: preco_unitario
+        description: Preço unitário do item.
+      - name: desconto_preco_unitario
+        description: Desconto aplicado ao produto unitário.
+      - name: total_bruto
+        description: Valor total (preço unitario * Quantidade)
+      - name: total_liquido
+        description: Valor total - descontos
+      - name: frete_rateado
+        description: Valor do Frete reteado pela quantidade de pedidos.
+      - name: taxa_rateado
+        description: Imposto rateado pela quantidade de pedidos.
+      - name: lucro
+        description: .
+      - name: valor_total
+        description: Valor total considerando o pedido.

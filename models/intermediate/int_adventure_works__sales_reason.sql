@@ -12,7 +12,7 @@ with
             , fk_motivo_venda
         from {{ ref('stg_adventure_works__sales_orders_headers_sales_reasons') }}
     )
-    , order as (
+    , orders as (
         select
             pk_venda
             , fk_vendedor
@@ -21,13 +21,13 @@ with
     )
     , union_tables as (
         select
-            order.pk_venda
-            , order.fk_vendedor
-            , order.fk_cliente
+            orders.pk_venda
+            , orders.fk_vendedor
+            , orders.fk_cliente
             , sales_reason.motivo_venda
             , sales_reason.tipo_motivo
-        from order
-        left join order_sales_reason on order.pk_venda = order_sales_reason.fk_venda
+        from orders
+        left join order_sales_reason on orders.pk_venda = order_sales_reason.fk_venda
         left join sales_reason on order_sales_reason.fk_motivo_venda = sales_reason.pk_motivo_venda
     )
 select *

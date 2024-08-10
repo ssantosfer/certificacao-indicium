@@ -1,0 +1,21 @@
+version: 2
+
+models:
+  - name: dim_customers
+    description: Tabela dimensão dos clientes da Adventure Works.
+    columns:
+      - name: pk_cliente
+        description: Chave primária da dimensão customers.
+        tests:
+          - unique
+          - not_null
+      - name: fk_pessoa
+        description: Código da pessoa.
+      - name: fk_loja
+        description: Código da loja.
+      - name: fk_vendedor
+        description: Código do Vendedor.
+      - name: nm_cliente
+        description: Nome do Cliente.
+      - name: tipo_cliente
+        description: Tipo de Cliente (Pessoa física ou Juridica).

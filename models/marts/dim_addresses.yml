@@ -1,0 +1,23 @@
+version: 2
+
+models:
+  - name: dim_addresses
+    description: Tabela dimensão dos endereços dos clientes da Adventure Works.
+    columns:
+      - name: pk_endereco
+        description: Chave primária da dimensão addresses.
+        tests:
+          - unique
+          - not_null
+      - name: nome_endereco
+        description: Nome da rua.
+      - name: nome_cidade
+        description: Nome da cidade.
+      - name: cep
+        description: Código postal.
+      - name: nome_estado
+        description: Nome do estado.
+      - name: nome_pais
+        description: Nome do país.
+      - name: codigo_estado
+        description: Código do Estado.
