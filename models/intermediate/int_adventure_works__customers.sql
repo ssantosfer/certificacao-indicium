@@ -4,7 +4,6 @@ with
             pk_cliente
             , fk_pessoa
             , fk_loja
-            , fk_territorio
         from {{ ref('stg_adventure_works__customers') }}
     )
     , business_entity as (
@@ -30,23 +29,33 @@ with
         select
             customer.pk_cliente
             , customer.fk_pessoa
-            , customer.fk_loja
-            , customer.fk_territorio
-            , person.nome_completo
-            , person.tipo_pessoa
+            , 0 as fk_loja
+          --  , customer.fk_loja
+            , person.nome_completo as nm_cliente
+            , 0 as fk_vendedor
+            , 'Pessoa Física' as tipo_cliente
         from customer
         inner join person on customer.fk_pessoa = person.pk_entidade_negocio
+        where customer.fk_pessoa is not null
     )
     , person_store as (
         select
             customer.pk_cliente
             , customer.fk_pessoa
             , customer.fk_loja
-            , customer.fk_territorio
-            , store.nome_loja
-            , store.fk_sales_person
+            , store.nome_loja as nm_cliente
+            , store.fk_sales_person as fk_vendedor
+            , 'Pessoa Juridica' as tipo_cliente
         from customer
         inner join store on customer.fk_loja = store.pk_entidade_negocio
+        where customer.fk_pessoa is null
+    )
+    , union_tables as (
+        select *
+        from person_customer
+        union all
+        select *
+        from person_store
     )
 select *
 from union_tables

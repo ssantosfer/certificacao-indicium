@@ -30,7 +30,7 @@ with
             , address.cep
             , address.nome_cidade
             , state_province.nome_estado
-            , nome_estado.codigo_estado
+            , state_province.codigo_estado
             , country_region.nome_pais
         from address
         left join state_province on address.fk_estado = state_province.pk_estado
