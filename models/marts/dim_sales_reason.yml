@@ -9,9 +9,9 @@ models:
       - name: pk_motivo_venda
         description: Chave primária que identifica o motivo da venda.
       - name: fk_vendedor
-        description: Código do Vendedor.
+        description: Chave estrangeria que relaciona com a tabela de sales_person.
       - name: fk_cliente
-        description: Código do Cliente.
+        description: Chave estrangeria que relaciona com a tabela de Customers.
       - name: motivo_venda
         description: Motivo da Venda.
       - name: tipo_motivo

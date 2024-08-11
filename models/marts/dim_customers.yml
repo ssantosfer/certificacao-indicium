@@ -14,7 +14,7 @@ models:
       - name: fk_loja
         description: Código da loja.
       - name: fk_vendedor
-        description: Código do Vendedor.
+        description: Chave estrangeira que relaciona com a tabela de sales_person.
       - name: nm_cliente
         description: Nome do Cliente.
       - name: tipo_cliente

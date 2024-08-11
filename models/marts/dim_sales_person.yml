@@ -5,7 +5,7 @@ models:
     description: Tabela dimensão dos vendedores da Adventure Works.
     columns:
       - name: pk_vendedor
-        description: Chave primária da dimensão.
+        description: Chave primária da dimensão de sales_person.
         tests:
           - unique
           - not_null
