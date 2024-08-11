@@ -1,6 +1,7 @@
 with transform as (
     select
         pk_venda
+        , pk_motivo_venda
         , fk_vendedor
         , fk_cliente
         , motivo_venda

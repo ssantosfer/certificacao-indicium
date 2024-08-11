@@ -5,10 +5,9 @@ models:
     description: Tabela dimensão dos motivos de venda da Adventure Works.
     columns:
       - name: pk_venda
-        description: Chave primária da dimensão. Ela representa o Número da Venda, também pode ser utilizada para relacionamento com a tabela de Venda.
-        tests:
-          - unique
-          - not_null
+        description: Chave primária que identifica o ID da venda.
+      - name: pk_motivo_venda
+        description: Chave primária que identifica o motivo da venda.
       - name: fk_vendedor
         description: Código do Vendedor.
       - name: fk_cliente

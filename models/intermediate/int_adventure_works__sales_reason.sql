@@ -22,6 +22,7 @@ with
     , union_tables as (
         select
             orders.pk_venda
+            , sales_reason.pk_motivo_venda
             , orders.fk_vendedor
             , orders.fk_cliente
             , sales_reason.motivo_venda
