@@ -39,6 +39,6 @@ models:
       - name: taxa_rateado
         description: Imposto rateado pela quantidade de pedidos.
       - name: lucro
-        description: .
+        description: Lucro obtido.
       - name: valor_total
         description: Valor total considerando o pedido.
