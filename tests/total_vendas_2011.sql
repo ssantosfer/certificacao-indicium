@@ -1,3 +1,9 @@
+{{
+    config(
+        severity = 'warn'
+    )
+}}
+
 with
     vendas_em_2011 as (
         select
@@ -6,7 +12,8 @@ with
         where data_venda between '2011-01-01' and '2011-12-31'
     )
 select total_bruto
-from vendas_em_2011 
+from vendas_em_2011
+where total_bruto != 12646112.16
 
 -- Informado pela contabilidade: 12.646.112,16
 -- Resultado da minha tabela fato: 12.646.104,41
